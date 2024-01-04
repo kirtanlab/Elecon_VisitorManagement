@@ -1,0 +1,9 @@
+paletter.js --> 122 for table background
+src/theme/overrides/components/table.js --> table background and width
+
+line 321 - image field, visitor-details-table
+
+
+
+--> NExt task
+ use dialog to show image

@@ -1,0 +1,107 @@
+/* eslint-disable */
+import PropTypes from 'prop-types';
+// @mui
+import { useTheme } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
+import Stack from '@mui/material/Stack';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import CardHeader from '@mui/material/CardHeader';
+import ListItemText from '@mui/material/ListItemText';
+// utils
+import { useEffect } from 'react';
+import { fDateTime } from 'src/utils/format-time';
+// components
+import Label from 'src/components/label';
+import Image from 'src/components/image';
+import Iconify from 'src/components/iconify';
+import Carousel, { CarouselArrows, useCarousel } from 'src/components/carousel';
+import WidgetSummary from '../../../components/widget/widget-summary';
+import { Grid } from '@mui/material';
+
+export default function TransactionItem({ item }) {
+  const { avatarUrl, name, duration, bookedAt, guests, coverUrl, price, isHot } = item;
+
+  useEffect(() => {
+    console.log("here in transaction item")
+  }, [])
+
+  return (
+    <Paper
+      sx={{
+        mr: 3,
+        borderRadius: 2,
+        position: 'relative',
+        bgcolor: 'background.neutral',
+        // border: '2px solid red'
+      }}
+    >
+      {/* <Stack
+        spacing={2}
+        sx={{
+          px: 2,
+          pb: 1,
+          pt: 2.5,
+        }}
+      >
+        <Stack direction="row" alignItems="center" spacing={2}> */}
+        
+          <WidgetSummary
+            title="Item Orders"
+            total={172}
+            color="warning"
+            // icon={<img alt="icon" src="/assets/icons/glass/ic_glass_buy.png" />}
+          />
+    
+          {/* <ListItemText
+            primary={name}
+            secondary={fDateTime(bookedAt)}
+            secondaryTypographyProps={{
+              mt: 0.5,
+              component: 'span',
+              typography: 'caption',
+              color: 'text.disabled',
+            }}
+          /> */}
+        {/* </Stack>
+      </Stack> */}
+      {/* <Stack
+            spacing={3}
+            direction="row"
+            alignItems="center"
+            sx={{ color: 'text.secondary', typography: 'caption' }}
+          >
+            <Stack direction="row" alignItems="center">
+              <Iconify icon="solar:calendar-date-bold" width={16} sx={{ mr: 0.5 }} />
+              {duration}
+            </Stack>
+  
+            <Stack direction="row" alignItems="center">
+              <Iconify icon="solar:users-group-rounded-bold" width={16} sx={{ mr: 0.5 }} />
+              {guests} Guests
+            </Stack>
+          </Stack>
+        </Stack>
+   */}
+      {/* <Label
+          variant="filled"
+          sx={{
+            right: 16,
+            zIndex: 9,
+            bottom: 16,
+            position: 'absolute',
+          }}
+        >
+          {isHot && '🔥'} ${price}
+        </Label> */}
+
+      {/* <Box sx={{ p: 1, position: 'relative' }}>
+          <Image alt={coverUrl} src={coverUrl} ratio="1/1" sx={{ borderRadius: 1.5 }} />
+        </Box> */}
+    </Paper>
+  );
+}
+
+TransactionItem.propTypes = {
+  item: PropTypes.object,
+};
