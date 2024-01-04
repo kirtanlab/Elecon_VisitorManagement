@@ -253,7 +253,8 @@ function VisitorDetailsRow({ row }) {
   const isLight = theme.palette.mode === "light";
 
   const [currentUser, setCurrentUser] = useState(null);
-
+  const [openImage, setOpenImage] = useState(false);
+  console.log("image", row.image);
   const popover = usePopover();
   // const flag = useBoolean(false);
   const {
@@ -336,7 +337,9 @@ function VisitorDetailsRow({ row }) {
             whileTap="tap"
             whileHover="hover"
             variants={varHover(1.05)}
-            // onClick={popover.onOpen}
+            onClick={() => {
+              setOpenImage(true);
+            }}
             sx={{
               width: 40,
               height: 40,
@@ -358,6 +361,54 @@ function VisitorDetailsRow({ row }) {
               }}
             />
           </IconButton>
+          <Dialog
+            // fullWidth
+            maxWidth="xl"
+            // open={flag.value}
+            open={openImage}
+            isFullscreen={true}
+            onClose={() => {
+              setOpenImage(false);
+            }}
+            transitionDuration={{
+              enter: theme.transitions.duration.shortest,
+              exit: 0,
+            }}
+            PaperProps={{
+              sx: {
+                mt: 3,
+                padding: 1,
+                // paddingTop: 6,
+                // paddingTop: 1,
+                // position: "fixed",
+
+                width: "100%",
+                height: "100%",
+                backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent black background
+                zIndex: 9999,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                // overflow: "unset",
+              },
+            }}
+            sx={{
+              [`& .${dialogClasses.container}`]: {
+                alignItems: "flex-start",
+              },
+            }}
+          >
+            <Box
+              component="img"
+              sx={{
+                width: "40%",
+                height: "80%",
+                borderRadius: 20,
+              }}
+              src={require("../../../../assets/images/dummy.jpeg")}
+              alt={row?.name ? row?.name : "visitor"}
+            />
+          </Dialog>
         </TableCell>
         <TableCell>
           <ListItemText
@@ -472,7 +523,7 @@ function VisitorDetailsRow({ row }) {
         open={popover.open}
         onClose={popover.onClose}
         arrow="right-top"
-        sx={{ width: 160 }}
+        sx={{ width: 200 }}
       >
         {row.in_time ? (
           <MenuItem
