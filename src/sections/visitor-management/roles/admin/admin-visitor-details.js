@@ -302,7 +302,7 @@ function AdminVisitorDetailsRow({ row }) {
 
   return (
     <>
-      <TableRow sx={{ backgroundColor: "black" }}>
+      <TableRow sx={{}}>
         <TableCell>
           <ListItemText
             primary={row.name}
